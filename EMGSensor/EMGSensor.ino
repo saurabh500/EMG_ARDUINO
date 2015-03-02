@@ -1,5 +1,6 @@
-  // reads analog input from the five inputs from your arduino board 
-  // and sends it out via serial
+// The EMG sensor used to develop this code was Muscle Sensor v3
+// https://www.sparkfun.com/products/13027
+
   
   int value=0;
   
