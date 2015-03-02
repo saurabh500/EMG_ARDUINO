@@ -32,6 +32,7 @@
   
   // The value required to be considered a muscle flex.
   int sustainedThreshold  = 60;
+  // The initial muscle tension threshold at which we start waiting for gesture enablement.
   int gestureRequiredThreshold = 150;
   
   // The running time that musle has been continously flexed.
@@ -173,31 +174,7 @@
      }
      
      CURRENT_STATE = newState;
-     
-     
-     
-//     recordedValues[recordedIndex] = value;
-//     recordedIndex++;
-//     
-//     if(recordedIndex == MAX_INTERVALS){
-//        boolean result = isGestureRecognized(); 
-//        if(result){
-//           Serial.println("Gesture recognized"); 
-//           digitalWrite(ledGreen, HIGH);
-//           spinMotor(true /* forward */, 500);
-//           spinMotor(false /* backward */, 500);
-//           digitalWrite(ledGreen, LOW);
-//           isGestureEnabled = false;
-//        }else{
-//           isGestureEnabled = false;
-//           recordedIndex = 0; 
-//           delayTime = 50;
-//           digitalWrite(ledYellow, HIGH);
-//           delay(1000);
-//           digitalWrite(ledYellow, LOW);
-//           Serial.println("Gesture Failed"); 
-//        }
-//     }
+
     }
     
     // wait for a bit to not overload the port
@@ -236,70 +213,4 @@
     analogWrite(PWM_A, 0);       // turn off power to the motor
   }
   
-  /*
-  void spinMotor(){
-    
-    
-  // Set the outputs to run the motor forward
-  if(forward){
-    digitalWrite(BRAKE_A, LOW);  // setting brake LOW disable motor brake
-    digitalWrite(DIR_A, HIGH);   // setting direction to HIGH the motor will spin forward
-  
-    analogWrite(PWM_A, 255);     // Set the speed of the motor, 255 is the maximum value
-  
-    delay(2000);                 // hold the motor at full speed for 5 seconds
-    Serial.print("current consumption at full speed: ");
-    Serial.println(analogRead(SNS_A));
-  
-  // Brake the motor
-  
-    Serial.println("Start braking\n");
-    // raising the brake pin the motor will stop faster than the stop by inertia
-    digitalWrite(BRAKE_A, HIGH);  // raise the brake
-    delay(500);
-  
-  // Set the outputs to run the motor backward
-  
-  //  Serial.println("Backward");
-  //  digitalWrite(BRAKE_A, LOW);  // setting againg the brake LOW to disable motor brake
-  //  digitalWrite(DIR_A, LOW);    // now change the direction to backward setting LOW the DIR_A pin
-  //
-  //  analogWrite(PWM_A, 255);     // Set the speed of the motor
-  //
-  //  delay(5000);
-  //  Serial.print("current consumption backward: ");
-  //  Serial.println(analogRead(SNS_A));
-  
-    // now stop the motor by inertia, the motor will stop slower than with the brake function
-    analogWrite(PWM_A, 0);       // turn off power to the motor
-  
-    Serial.print("current brake: ");
-    Serial.println(analogRead(A0));
-  }else{
-    digitalWrite(BRAKE_A, LOW);  // setting brake LOW disable motor brake
-    digitalWrite(DIR_A, HIGH);   // setting direction to HIGH the motor will spin forward
-  
-    analogWrite(PWM_A, 255);     // Set the speed of the motor, 255 is the maximum value
-  
-  // Set the outputs to run the motor backward
-  
-    Serial.println("Backward");
-    digitalWrite(BRAKE_A, LOW);  // setting againg the brake LOW to disable motor brake
-    digitalWrite(DIR_A, LOW);    // now change the direction to backward setting LOW the DIR_A pin
-  //
-    analogWrite(PWM_A, 127);     // Set the speed of the motor
-  //
-    delay(1000);
-    Serial.print("current consumption backward: ");
-    Serial.println(analogRead(SNS_A));
-  
-    // now stop the motor by inertia, the motor will stop slower than with the brake function
-    analogWrite(PWM_A, 0);       // turn off power to the motor
-  
-    Serial.print("current brake: ");
-    Serial.println(analogRead(A0));
-  }
-  forward = !forward;
-  //  Serial.println("End of the motor shield test with DC motors. Thank you!");
-  }
-  */
+
